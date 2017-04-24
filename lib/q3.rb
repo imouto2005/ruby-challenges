@@ -14,25 +14,62 @@
 # Thank you!
 
 p 'Your current balance is'
-current_balance = 4000
-p current_balance
+$current_balance = 4000
+p $current_balance
 
-p 'What would you like to do? (deposit, withdraw, check_balance)'
-choice = gets.chomp
+def check_balance
+  p "Your current balance is #{$current_balance}"
+  p 'Are you done?'
+  response = gets.chomp
+  if response == 'yes'
+    p 'Thank you!'
+  else
+    prompt
+  end
+end
 
-case choice
-when 'deposit'
+def deposit
   p 'How much would you like to deposit?'
   amt = gets.chomp.to_i
-  result = current_balance + amt
-  p "Your current balance is #{result}"
-when 'withdraw'
+  $current_balance += amt
+  check_balance
+  p 'Are you done?'
+  response = gets.chomp
+  if response == 'yes'
+    p 'Thank you!'
+  else
+    prompt
+  end
+end
+
+def withdraw
   p 'How much would you like to withdraw?'
   amt = gets.chomp.to_i
-  result = current_balance - amt
-  p "Your current balance is #{result}"
-when 'check_balance'
-  p "Your current balance is #{current_balance}"
-else
-  p 'Sorry please follow instructions and enter properly'
+  $current_balance -= amt
+  check_balance
+  p 'Are you done?'
+  response = gets.chomp
+  if response == 'yes'
+    p 'Thank you!'
+  else
+    prompt
+  end
 end
+
+def prompt
+  p 'What would you like to do? (deposit, withdraw, check_balance)'
+  choice = gets.chomp
+
+  case choice
+  when 'deposit'
+    deposit
+  when 'withdraw'
+    withdraw
+  when 'check_balance'
+    check_balance
+  else
+    p 'Sorry please follow instructions and enter properly'
+  end
+end
+
+prompt
