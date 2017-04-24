@@ -22,7 +22,7 @@ p 'Guess a number between 1 and 100'
 answer = gets.chomp.to_i
 
 def guess_number(answer)
-  secret_number = 45
+  secret_number = rand(1..100)
   count = 1
   until answer == secret_number
     if answer < secret_number
