@@ -17,8 +17,7 @@ p 'Your current balance is'
 $current_balance = 4000
 p $current_balance
 
-def check_balance
-  p "Your current balance is #{$current_balance}"
+def are_you_done
   p 'Are you done?'
   response = gets.chomp
   if response == 'yes'
@@ -26,6 +25,11 @@ def check_balance
   else
     prompt
   end
+end
+
+def check_balance
+  p "Your current balance is #{$current_balance}"
+  are_you_done
 end
 
 def deposit
@@ -33,13 +37,6 @@ def deposit
   amt = gets.chomp.to_i
   $current_balance += amt
   check_balance
-  p 'Are you done?'
-  response = gets.chomp
-  if response == 'yes'
-    p 'Thank you!'
-  else
-    prompt
-  end
 end
 
 def withdraw
@@ -47,13 +44,6 @@ def withdraw
   amt = gets.chomp.to_i
   $current_balance -= amt
   check_balance
-  p 'Are you done?'
-  response = gets.chomp
-  if response == 'yes'
-    p 'Thank you!'
-  else
-    prompt
-  end
 end
 
 def prompt
